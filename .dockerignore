@@ -1,0 +1,12 @@
+.git
+.idea
+.vscode
+target
+data
+*.iml
+*.iws
+*.ipr
+HELP.md
+.DS_Store
+agent-tools
+**/.DS_Store

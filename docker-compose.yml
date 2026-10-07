@@ -1,0 +1,13 @@
+services:
+  tvremote:
+    build: .
+    image: tvremote:local
+    container_name: tvremote
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      # ADB anahtarları kalıcı olsun (TV'de tekrar onay istemesin)
+      - ./data/android:/root/.android
+    environment:
+      JAVA_OPTS: "-XX:MaxRAMPercentage=75.0"

@@ -1,0 +1,6 @@
+# Linux için: TV'ye ADB erişimi sorun olursa host ağını kullan.
+# Çalıştırma: docker compose -f docker-compose.yml -f docker-compose.host.yml up -d --build
+services:
+  tvremote:
+    network_mode: host
+    ports: []

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TV Kumanda</title>
+  <link rel="stylesheet" href="remote.css">
+</head>
+<body>
+  <main class="stage">
+    <section class="gate" id="gate" aria-label="TV bağlantısı">
+      <div class="gate-card">
+        <p class="gate-kicker">TV Remote</p>
+        <h1>Bağlan</h1>
+        <p class="gate-copy">Televizyonun ADB IP ve portunu gir.</p>
+
+        <form id="connect-form" class="gate-form" autocomplete="on">
+          <label>
+            <span>IP / Host</span>
+            <input id="host" name="host" class="text-input" type="text" inputmode="decimal" autocomplete="off" required placeholder="192.168.1.209" aria-label="TV IP adresi">
+          </label>
+          <label>
+            <span>Port</span>
+            <input id="port" name="port" class="text-input" type="number" min="1" max="65535" value="5555" required aria-label="ADB port">
+          </label>
+          <p class="gate-error" id="gate-error" role="alert" hidden></p>
+          <button type="submit" class="mute gate-submit" id="connect-btn">Giriş</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="remote" id="remote" role="application" aria-label="TV kumandası" hidden>
+      <div class="ir" aria-hidden="true"></div>
+
+      <header class="head">
+        <span class="led" id="led" data-state="idle"></span>
+        <p class="status" id="status" role="status">Hazır</p>
+        <button type="button" class="linkish" id="disconnect" title="Bağlantıyı kes">Çık</button>
+      </header>
+
+      <div class="shortcuts">
+        <button type="button" class="pill" data-key="HOME">Home</button>
+        <button type="button" class="pill" data-key="BACK">Geri</button>
+      </div>
+
+      <div class="pad" aria-label="Yön tuşları">
+        <button type="button" class="dir up" data-key="UP" aria-label="Yukarı">
+          <span aria-hidden="true"></span>
+        </button>
+        <button type="button" class="dir left" data-key="LEFT" aria-label="Sol">
+          <span aria-hidden="true"></span>
+        </button>
+        <button type="button" class="ok" data-key="OK">OK</button>
+        <button type="button" class="dir right" data-key="RIGHT" aria-label="Sağ">
+          <span aria-hidden="true"></span>
+        </button>
+        <button type="button" class="dir down" data-key="DOWN" aria-label="Aşağı">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <button type="button" class="mute keyboard-toggle" id="keyboard-toggle" aria-expanded="false" aria-controls="keyboard">Klavye</button>
+
+      <div class="keyboard" id="keyboard" hidden>
+        <input id="text" class="text-input" type="text" enterkeyhint="send" autocomplete="off" autocapitalize="sentences" maxlength="200" placeholder="Aramaya yaz" aria-label="TV'ye yazılacak metin">
+        <div class="key-actions">
+          <button type="button" class="pill" data-key="DEL">Sil</button>
+          <button type="button" class="pill" id="send-text">Yaz</button>
+        </div>
+        <button type="button" class="mute" data-key="ENTER">Ara</button>
+      </div>
+
+      <div class="volume-block">
+        <div class="volume-meta">
+          <span>Ses</span>
+          <strong id="volume-value">40</strong>
+        </div>
+        <input id="volume" type="range" min="0" max="100" value="40" aria-label="Ses seviyesi">
+        <button type="button" class="mute" data-key="MUTE">Sessiz</button>
+      </div>
+    </div>
+  </main>
+  <script src="remote.js"></script>
+</body>
+</html>
